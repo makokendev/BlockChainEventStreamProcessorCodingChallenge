@@ -57,6 +57,9 @@ Copyright (C) 2022 CodingChallenge.Console
 
 [Github actions](https://github.com/makokendev/BlockChainEventStreamProcessorCodingChallenge/actions) contains a sample Github Workflow run to demonstrate how the build pipeline output looks like. 
 
+### Build Badge
+[![Coding Challenge Build Pipeline](https://github.com/makokendev/BlockChainEventStreamProcessorCodingChallenge/actions/workflows/cakebuild.yml/badge.svg)](https://github.com/makokendev/BlockChainEventStreamProcessorCodingChallenge/actions/workflows/cakebuild.yml) 
+
 ---
 
 ## Solution
