@@ -1,4 +1,5 @@
-﻿using CodingChallenge.Application;
+﻿using System.Threading.Tasks;
+using CodingChallenge.Application;
 using CodingChallenge.Infrastructure;
 using CommandLine;
 using Microsoft.Extensions.Configuration;
@@ -13,15 +14,15 @@ partial class Program
     static ILogger logger;
     static ServiceProvider serviceProvider;
 
-    static void Main(string[] args)
+    static async Task Main(string[] args)
     {
         LoadConfiguration();
         SetupLogger();
         ConfigureServices(new ServiceCollection());
         var commandParser = serviceProvider.GetService<NFTRecordConsoleRunner>();
-        var result = CommandLine.Parser.Default.ParseArguments<CommandLineOptions>(args)
-        .WithParsedAsync(async options => await commandParser.RunOptionsAsync(options)).GetAwaiter().GetResult()
-        .WithNotParsed(errs => commandParser.HandleParseError(errs));
+        var parser = CommandLine.Parser.Default.ParseArguments<CommandLineOptions>(args);
+        await parser.WithParsedAsync(async options => await commandParser.RunOptionsAsync(options));
+        await parser.WithNotParsedAsync(async errs => await commandParser.HandleParseErrorAsync(errs));
     }
     static void LoadConfiguration()
     {

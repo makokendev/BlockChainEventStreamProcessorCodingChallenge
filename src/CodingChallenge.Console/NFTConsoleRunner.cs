@@ -155,7 +155,7 @@ public class NFTRecordConsoleRunner
         }
     }
 
-    public void HandleParseError(IEnumerable<Error> errs)
+    public async Task HandleParseErrorAsync(IEnumerable<Error> errs)
     {
 
         //help requested and version requested are built in and can be ignored.
@@ -166,5 +166,6 @@ public class NFTRecordConsoleRunner
                 _logger.LogWarning($"Command line parameter parse error. {error.ToString()}");
             }
         }
+        await Task.CompletedTask;
     }
 }
